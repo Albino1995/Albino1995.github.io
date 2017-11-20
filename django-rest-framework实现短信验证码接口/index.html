@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>django-rest-framework实现短信验证码接口 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用云片网短信验证码接口选择使用云片网，在注册完成后需要提交模板和认证资格。我选择了使用默认的模板和使用个人用户，在完成上述操作后个人信息里会有一个apikey，之后会用到。在云片网的API文档里找到单条发送接口，这里必须要的参数有apikey，mobile，text。">
+  <meta name="description" content="记录drf实现短信验证码接口。">
 <meta name="keywords" content="python,django,django-rest-framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django-rest-framework实现短信验证码接口">
 <meta property="og:url" content="http://yoursite.com/django-rest-framework实现短信验证码接口/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="使用云片网短信验证码接口选择使用云片网，在注册完成后需要提交模板和认证资格。我选择了使用默认的模板和使用个人用户，在完成上述操作后个人信息里会有一个apikey，之后会用到。在云片网的API文档里找到单条发送接口，这里必须要的参数有apikey，mobile，text。">
+<meta property="og:description" content="记录drf实现短信验证码接口。">
 <meta property="og:image" content="http://yoursite.com/img/20171017/yunpian.jpg">
 <meta property="og:image" content="http://yoursite.com/img/20171017/sendsms.jpg">
-<meta property="og:updated_time" content="2017-10-20T01:18:14.553Z">
+<meta property="og:updated_time" content="2017-11-20T03:12:56.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django-rest-framework实现短信验证码接口">
-<meta name="twitter:description" content="使用云片网短信验证码接口选择使用云片网，在注册完成后需要提交模板和认证资格。我选择了使用默认的模板和使用个人用户，在完成上述操作后个人信息里会有一个apikey，之后会用到。在云片网的API文档里找到单条发送接口，这里必须要的参数有apikey，mobile，text。">
+<meta name="twitter:description" content="记录drf实现短信验证码接口。">
 <meta name="twitter:image" content="http://yoursite.com/img/20171017/yunpian.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
@@ -165,8 +165,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用云片网"><a href="#使用云片网" class="headerlink" title="使用云片网"></a>使用云片网</h2><p>短信验证码接口选择使用<a href="https://www.yunpian.com/admin/main" target="_blank" rel="external">云片网</a>，在注册完成后需要提交模板和认证资格。<br>我选择了使用默认的模板和使用个人用户，在完成上述操作后个人信息里会有一个apikey，之后会用到。<br>在云片网的API文档里找到<a href="https://www.yunpian.com/api2.0/api-domestic/single_send.html" target="_blank" rel="external">单条发送接口</a>，这里必须要的参数有apikey，mobile，text。</p>
-<a id="more"></a>
+        <p>记录drf实现短信验证码接口。<br><a id="more"></a></p>
+<h2 id="使用云片网"><a href="#使用云片网" class="headerlink" title="使用云片网"></a>使用云片网</h2><p>短信验证码接口选择使用<a href="https://www.yunpian.com/admin/main" target="_blank" rel="external">云片网</a>，在注册完成后需要提交模板和认证资格。<br>我选择了使用默认的模板和使用个人用户，在完成上述操作后个人信息里会有一个apikey，之后会用到。<br>在云片网的API文档里找到<a href="https://www.yunpian.com/api2.0/api-domestic/single_send.html" target="_blank" rel="external">单条发送接口</a>，这里必须要的参数有apikey，mobile，text。</p>
 <p><img src="/img/20171017/yunpian.jpg" alt="avatar"></p>
 <h2 id="编写访问接口的函数"><a href="#编写访问接口的函数" class="headerlink" title="编写访问接口的函数"></a>编写访问接口的函数</h2><p>有API文档发现调用接口有三个必要的参数，将他们传给接口，要注意text要传入你提交的模板。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">YunPian</span><span class="params">()</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, api_key)</span>:</span></div><div class="line">        self.api_key = api_key</div><div class="line">        self.single_send_url = <span class="string">'https://sms.yunpian.com/v2/sms/single_send.json'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_sms</span><span class="params">(self, code, mobile)</span>:</span></div><div class="line">        params = &#123;</div><div class="line">            <span class="string">'apikey'</span>: self.api_key,</div><div class="line">            <span class="string">'mobile'</span>: mobile,</div><div class="line">            <span class="string">'text'</span>: <span class="string">'您的验证码是&#123;code&#125;。如非本人操作，请忽略本短信'</span>.format(code=code)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        response = requests.post(self.single_send_url, data=params)</div><div class="line">        re_dict = json.loads(response.text)</div><div class="line">        <span class="keyword">return</span> re_dict</div></pre></td></tr></table></figure><br>执行完成后re_dict里面会有一个返回码，具体信息可以参考<a href="https://www.yunpian.com/api2.0/api-recode.html" target="_blank" rel="external">返回值说明</a></p>
 <h2 id="在drf中调用YunPian"><a href="#在drf中调用YunPian" class="headerlink" title="在drf中调用YunPian()"></a>在drf中调用YunPian()</h2><p>首先要继承CreateModelMixin和GenericViewSet用于保存生成的验证码信息。<br>还需要写一个函数生成随机验证码，我选择了生成四位数字的模式。<br>然后是重写CreateModelMixin的create方法，这里可以在serializers加入自己需要验证手机的逻辑。<br>最后根据send_sms()返回的状态码返回不同的结果，如果发送成功则将记录存入数据库。</p>

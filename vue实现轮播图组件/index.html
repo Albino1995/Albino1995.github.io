@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/11 | Albino的博客</title>
+  <title>vue实现轮播图组件 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Albino的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albino的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/11/index.html">
+  <meta name="description" content="记录用vue实现轮播图。">
+<meta name="keywords" content="vue,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue实现轮播图组件">
+<meta property="og:url" content="http://yoursite.com/vue实现轮播图组件/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="Albino的博客">
+<meta property="og:description" content="记录用vue实现轮播图。">
+<meta property="og:image" content="http://yoursite.com/img/20171120/scroll-4.png">
+<meta property="og:updated_time" content="2017-11-20T05:13:04.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albino的博客">
-<meta name="twitter:description" content="Albino的博客">
+<meta name="twitter:title" content="vue实现轮播图组件">
+<meta name="twitter:description" content="记录用vue实现轮播图。">
+<meta name="twitter:image" content="http://yoursite.com/img/20171120/scroll-4.png">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -140,36 +144,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue实现轮播图组件" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/vue实现轮播图组件/" class="archive-article-date">
-  	<time datetime="2017-11-20T03:06:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/vue实现轮播图组件/">vue实现轮播图组件</a>
+    <h1 class="article-title" itemprop="name">
+      vue实现轮播图组件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/vue实现轮播图组件/" class="archive-article-date">
+  	<time datetime="2017-11-20T03:06:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录用vue实现轮播图。</p>
+<a id="more"></a>
+<h2 id="BetterScroll"><a href="#BetterScroll" class="headerlink" title="BetterScroll"></a>BetterScroll</h2><p>轮播图的实现主要是依赖<a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="external">BetterScroll</a>这个包，这里用的版本是0.1.15，这是一款解决滚动需求的插件，它的实现原理是当页面内容的宽度超过视口宽度的时候，会出现横向滚动条。也就是当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容。</p>
+<p><img src="/img/20171120/scroll-4.png" alt=""></p>
+<p>参考：<a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/#滚动原理" target="_blank" rel="external">文档</a></p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>这一步需要给轮播图宽度和BetterScroll做初始化。vue通过给dom元素添加ref属性，可以在JavaScript中通过$refs直接访问。<br>初始化宽度：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">_setSliderWidth(isResize) &#123;</div><div class="line">        <span class="keyword">this</span>.children = <span class="keyword">this</span>.$refs.sliderGroup.children</div><div class="line">        <span class="keyword">let</span> width = <span class="number">0</span></div><div class="line">        <span class="comment">// 父容器宽度</span></div><div class="line">        <span class="keyword">let</span> sliderWidth = <span class="keyword">this</span>.$refs.slider.clientWidth</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.children.length; i++) &#123;</div><div class="line">          <span class="keyword">let</span> child = <span class="keyword">this</span>.children[i]</div><div class="line">          addClass(child, <span class="string">'slider-item'</span>)</div><div class="line">          child.style.width = sliderWidth + <span class="string">'px'</span></div><div class="line">          <span class="comment">// 轮播图总宽度</span></div><div class="line">          width += sliderWidth</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 只在初始化时增加轮播需要的width</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.loop &amp;&amp; !isResize) &#123;</div><div class="line">          width += <span class="number">2</span> * sliderWidth</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 子容器总宽度</span></div><div class="line">        <span class="keyword">this</span>.$refs.sliderGroup.style.width = width + <span class="string">'px'</span></div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
+<p>这里初始化了父容器的宽度和子容器的宽度，如果轮播图循环播放，BetterScroll会将开头和结尾的dom对象各拷贝一份，所以需要在第一次初始化的时候加上2倍的宽度。</p>
+<p>初始化BetterScroll：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.slider = <span class="keyword">new</span> BScroll(<span class="keyword">this</span>.$refs.slider, &#123;</div><div class="line">      scrollX: <span class="literal">true</span>,</div><div class="line">      scrollY: <span class="literal">false</span>,</div><div class="line">      momentum: <span class="literal">false</span>,</div><div class="line">      snap: <span class="literal">true</span>,</div><div class="line">      snapLoop: <span class="keyword">this</span>.loop,</div><div class="line">      snapThreshold: <span class="number">0.3</span>,</div><div class="line">      snapSpeed: <span class="number">400</span>,</div><div class="line">      click: <span class="literal">true</span></div><div class="line">    &#125;)</div><div class="line">    <span class="comment">// 绑定scrollEnd事件</span></div><div class="line">    <span class="keyword">this</span>.slider.on(<span class="string">'scrollEnd'</span>, () =&gt; &#123;</div><div class="line">      <span class="keyword">let</span> pageIndex = <span class="keyword">this</span>.slider.getCurrentPage().pageX</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.loop) &#123;</div><div class="line">        pageIndex -= <span class="number">1</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">this</span>.currentPageIndex = pageIndex</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.autoPlay) &#123;</div><div class="line">        clearTimeout(<span class="keyword">this</span>.timer)</div><div class="line">        <span class="keyword">this</span>._play()</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure><br>这里设置了BetterScroll的各个参数，并且绑定了scrollEnd事件，这是BetterScroll的一个接口，每次轮播图转换就会触发，<br>回调函数里调用了BetterScroll的getCurrentPage()方法，获取了当前对象的index。</p>
+<h2 id="轮播和标签"><a href="#轮播和标签" class="headerlink" title="轮播和标签"></a>轮播和标签</h2><p>为轮播图下方添加圆形标签：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_initDots() &#123;</div><div class="line">        <span class="keyword">this</span>.dots = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="keyword">this</span>.children.length)</div><div class="line">      &#125;</div></pre></td></tr></table></figure><br>这样使得vue在循环时可以便利dots的index，实现了下方添加圆形标签</p>
+<p>轮播的实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">_play() &#123;</div><div class="line">        <span class="keyword">let</span> pageIndex = <span class="keyword">this</span>.currentPageIndex + <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.loop) &#123;</div><div class="line">          pageIndex += <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">          <span class="keyword">this</span>.slider.goToPage(pageIndex, <span class="number">0</span>, <span class="number">400</span>)</div><div class="line">        &#125;, <span class="keyword">this</span>.interval)</div><div class="line">      &#125;</div></pre></td></tr></table></figure></p>
+<p>pageIndex是从1开始计数，所以比currentPageIndex大1，而在触发滑动轮播图时间时会减1，使得两者相等触发active的样式。<br>最后设置一个setTimeout调用BetterScroll的goToPage方法实现跳转。每次触发滑动轮播图后，将timer清空，防止手动切换后造成的间隔混乱，然后再次调用_play()方法。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -185,149 +198,55 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/python中is和-的区别/" class="archive-article-date">
-  	<time datetime="2017-11-16T08:43:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/python中is和-的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python中is和==的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/python中is和-的区别/">python中is和==的区别</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework使用第三方登录/" class="archive-article-date">
-  	<time datetime="2017-11-07T08:35:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework使用第三方登录/">django-rest-framework使用第三方登录</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework使用缓存/" class="archive-article-date">
-  	<time datetime="2017-11-06T12:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework使用缓存/">django-rest-framework使用缓存</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -348,8 +267,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
