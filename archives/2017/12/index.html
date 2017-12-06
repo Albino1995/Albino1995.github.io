@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>django-rest-framework动态设置permission和serializer | Albino的博客</title>
+  <title>Archives: 2017/12 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在使用drf的过程中，常常会遇到权限和序列化会需要动态设置的问题，仅仅使用permission_classes和serializer_class显然不能满足需求，所以需要动态设置permission和serializer。">
-<meta name="keywords" content="python,django,django-rest-framework">
-<meta property="og:type" content="article">
-<meta property="og:title" content="django-rest-framework动态设置permission和serializer">
-<meta property="og:url" content="http://yoursite.com/django-rest-framework动态设置serializer和permission/index.html">
+  <meta name="description" content="Albino的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Albino的博客">
+<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="在使用drf的过程中，常常会遇到权限和序列化会需要动态设置的问题，仅仅使用permission_classes和serializer_class显然不能满足需求，所以需要动态设置permission和serializer。">
-<meta property="og:updated_time" content="2017-11-02T10:47:56.359Z">
+<meta property="og:description" content="Albino的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django-rest-framework动态设置permission和serializer">
-<meta name="twitter:description" content="在使用drf的过程中，常常会遇到权限和序列化会需要动态设置的问题，仅仅使用permission_classes和serializer_class显然不能满足需求，所以需要动态设置permission和serializer。">
+<meta name="twitter:title" content="Albino的博客">
+<meta name="twitter:description" content="Albino的博客">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -142,115 +140,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-django-rest-framework动态设置serializer和permission" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      django-rest-framework动态设置permission和serializer
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/Vue2-0独立开发专属音乐WebAPP课程播放器内置组件部分学习记录/" class="archive-article-date">
+  	<time datetime="2017-12-06T08:03:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Vue2-0独立开发专属音乐WebAPP课程播放器内置组件部分学习记录/">vue2.0独立开发专属音乐WebAPP课程播放器内置组件部分学习记录</a>
     </h1>
   
 
-        
-        <a href="/django-rest-framework动态设置serializer和permission/" class="archive-article-date">
-  	<time datetime="2017-10-20T00:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在使用drf的过程中，常常会遇到权限和序列化会需要动态设置的问题，仅仅使用<br>permission_classes和serializer_class显然不能满足需求，所以需要动态设置permission和serializer。</p>
-<a id="more"></a>
-<h2 id="动态设置permission-classes"><a href="#动态设置permission-classes" class="headerlink" title="动态设置permission_classes"></a>动态设置permission_classes</h2><p>跟踪源码发现，设置权限的函数get_permissions在APIView中:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_permissions</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Instantiates and returns the list of permissions that this view requires.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">return</span> [permission() <span class="keyword">for</span> permission <span class="keyword">in</span> self.permission_classes]</div></pre></td></tr></table></figure><br>接下来只需要在view中重载get_permissions即可，用用户接个举个例子，create代表着注册新用户，<br>retrieve代表着查看用户信息，显然需要动态设置get_permissions，当接口继承了viewset，这些对资源的操作会保存在action中。<br>views.py:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重载APIView的get_permissions, 动态设置权限</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_permissions</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="comment"># 只有用viewset对资源的操作才会保存到action</span></div><div class="line">    <span class="keyword">if</span> self.action == <span class="string">"retrieve"</span>:</div><div class="line">        <span class="keyword">return</span> [permissions.IsAuthenticated()]</div><div class="line">    <span class="keyword">elif</span> self.action == <span class="string">"create"</span>:</div><div class="line">        <span class="keyword">return</span> []</div><div class="line">    <span class="keyword">return</span> []</div></pre></td></tr></table></figure><br>在上述代码中，当用户进行了retrieve操作时，系统会需要用户登录的权限，而用户进行create操作时，则不需要权限。</p>
-<h2 id="动态设置serializer-class"><a href="#动态设置serializer-class" class="headerlink" title="动态设置serializer_class"></a>动态设置serializer_class</h2><p>跟踪源码发现，设置序列化的函数get_serializer_class在GenericAPIView中:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_serializer_class</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Return the class to use for the serializer.</span></div><div class="line"><span class="string">    Defaults to using `self.serializer_class`.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    You may want to override this if you need to provide different</span></div><div class="line"><span class="string">    serializations depending on the incoming request.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    (Eg. admins get full serialization, others get basic serialization)</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">assert</span> self.serializer_class <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>, (</div><div class="line">        <span class="string">"'%s' should either include a `serializer_class` attribute, "</span></div><div class="line">        <span class="string">"or override the `get_serializer_class()` method."</span></div><div class="line">        % self.__class__.__name__</div><div class="line">    )</div><div class="line"></div><div class="line">    <span class="keyword">return</span> self.serializer_class</div></pre></td></tr></table></figure><br>动态设置序列化和设置权限的思路基本一样，还是拿用户接口做例子，只需要修改下代码就可以。<br>views.py:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重载GenericAPIView的get_serializer_class, 动态序列化</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_serializer_class</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="keyword">if</span> self.action == <span class="string">"retrieve"</span>:</div><div class="line">        <span class="keyword">return</span> UserDetailSerializer</div><div class="line">    <span class="keyword">elif</span> self.action == <span class="string">"create"</span>:</div><div class="line">        <span class="keyword">return</span> UserRegSerializer</div><div class="line">    <span class="keyword">return</span> UserDetailSerializer</div></pre></td></tr></table></figure><br>在上述代码中，当用户进行了retrieve操作时，系统会调用UserDetailSerializer这个序列化类序列化用户个人信息，而用户进行create操作时，系统会调用UserRegSerializer这个序列化类序列化用户注册信息。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/django-rest-framework中自定义验证字段/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          django-rest-framework中自定义验证字段
-        
-      </div>
-    </a>
   
   
-    <a href="/django-rest-framework实现短信验证码接口/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">django-rest-framework实现短信验证码接口</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -271,8 +218,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
