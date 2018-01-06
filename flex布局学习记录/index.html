@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Albino的博客</title>
+  <title>flex布局学习记录 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Albino的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albino的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+  <meta name="description" content="flex布局学习记录">
+<meta name="keywords" content="css,flex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flex布局学习记录">
+<meta property="og:url" content="http://yoursite.com/flex布局学习记录/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="Albino的博客">
+<meta property="og:description" content="flex布局学习记录">
+<meta property="og:updated_time" content="2018-01-06T06:15:35.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albino的博客">
-<meta name="twitter:description" content="Albino的博客">
+<meta name="twitter:title" content="flex布局学习记录">
+<meta name="twitter:description" content="flex布局学习记录">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -140,117 +142,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-flex布局学习记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework动态设置serializer和permission/" class="archive-article-date">
-  	<time datetime="2017-10-20T00:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework动态设置serializer和permission/">django-rest-framework动态设置permission和serializer</a>
+    <h1 class="article-title" itemprop="name">
+      flex布局学习记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/flex布局学习记录/" class="archive-article-date">
+  	<time datetime="2018-01-06T04:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>flex布局学习记录<br><a id="more"></a></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>容器: 应用flex布局的容器<br>项目：容器下的各个子项目<br>主轴：主方向，默认为横轴<br>侧轴： 副方向，默认为竖轴<br>使用： 在容器添加属性display: flex</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><p>flex-direction用于控制主轴的方向</p>
+<p>属性:<br>row: 从左向右显示<br>row-reverse: 从右向左显示<br>column: 从上向下显示，将主轴方向改变为垂直方向<br>column-reverse: 从下向上显示</p>
+<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><p>flex-wrap用于当容器主轴放不下所有内容的处理</p>
+<p>属性:</p>
+<p>wrap: 换行<br>wrap-reverse: 换行并与副轴方向相反排列<br>no-wrap: 将子项目缩小显示</p>
+<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p>flex-flow是flex-direction和flex-wrap的简写</p>
+<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p>justify-content控制子项目在主轴的对齐方式</p>
+<p>属性:</p>
+<p>flex-start: 主轴方向对齐<br>flex-end: 主轴反方向对齐<br>center: 主轴方向居中对齐<br>space-between: 主轴方向两端对齐<br>space-around: 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</p>
+<h3 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h3><p>align-items控制子项目在侧轴的对齐方式</p>
+<p>属性:</p>
+<p>flex-star<br>flex-end<br>center<br>baseline: 文字底部对齐<br>stretch: 让子项目大小填充满容器</p>
+<h3 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h3><p>align-content控制多跟轴线的对齐方式，必须要wrap属性才能生效</p>
+<p>属性:</p>
+<p>flex-start<br>flex-end<br>center<br>space-between<br>space-around<br>stretch</p>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>order控制子项目的摆放顺序，默认值为0，值越小摆放顺序越前，可取负值</p>
+<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p>flex-grow控制子项目的放大比例，比例相对于剩余空间，默认为0，即如果存在剩余空间，也不放大</p>
+<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</p>
+<h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间，<br>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">Flex 布局教程：语法篇</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">Flex 布局教程：实例篇</a><br><a href="https://segmentfault.com/l/1500000012232953" target="_blank" rel="external">深入理解布局神器 flexbox</a><br><a href="http://flexboxfroggy.com/" target="_blank" rel="external">flexboxfroggy</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework实现短信验证码接口/" class="archive-article-date">
-  	<time datetime="2017-10-17T01:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/Vue2-0独立开发专属音乐WebAPP课程播放器内置组件部分学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue2.0独立开发专属音乐WebAPP课程播放器内置组件部分学习记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework实现短信验证码接口/">django-rest-framework实现短信验证码接口</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -272,8 +277,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
