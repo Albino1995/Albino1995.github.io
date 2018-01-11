@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Albino的博客</title>
+  <title>python正则表达式小记 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Albino的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albino的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="仅记录下在python使用正则表达式自己薄弱的知识点">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python正则表达式小记">
+<meta property="og:url" content="http://yoursite.com/python正则表达式小记/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="Albino的博客">
+<meta property="og:description" content="仅记录下在python使用正则表达式自己薄弱的知识点">
+<meta property="og:updated_time" content="2018-01-11T11:45:16.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albino的博客">
-<meta name="twitter:description" content="Albino的博客">
+<meta name="twitter:title" content="python正则表达式小记">
+<meta name="twitter:description" content="仅记录下在python使用正则表达式自己薄弱的知识点">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -140,36 +142,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python正则表达式小记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/python正则表达式小记/" class="archive-article-date">
-  	<time datetime="2018-01-11T10:37:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/python正则表达式小记/">python正则表达式小记</a>
+    <h1 class="article-title" itemprop="name">
+      python正则表达式小记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/python正则表达式小记/" class="archive-article-date">
+  	<time datetime="2018-01-11T10:37:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>仅记录下在python使用正则表达式自己薄弱的知识点<br><a id="more"></a></p>
+<h2 id="贪婪与非贪婪"><a href="#贪婪与非贪婪" class="headerlink" title="贪婪与非贪婪"></a>贪婪与非贪婪</h2><p>正则表达式默认是贪婪模式，即尽可能匹配多满足条件的结果，e.g.：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s =  <span class="string">'abcdefghijk'</span></div><div class="line">re.match(<span class="string">'\w+'</span>, s).group() <span class="comment"># abcdefghijk</span></div></pre></td></tr></table></figure></p>
+<p>而当?紧跟在<font color="red">其他任一限制符</font>(*, +, ?, {n}, {n,}, {n,m})后面，则匹配的模式会改变为非贪婪模式。<br>非贪婪模式尽可能少的匹配所搜索的字符串，e.g.:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s =  <span class="string">'abcdefghijk'</span></div><div class="line">re.match(<span class="string">'\w&#123;3,5&#125;?'</span>, s).group() <span class="comment"># abc</span></div></pre></td></tr></table></figure><br>在例子中只匹配到了3个字母就停止了匹配，这里使用了非贪婪模式的匹配使{3,5}等价于{3}</p>
+<h2 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h2><p>re.match(pattern, string, flags=0) 从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none，匹配成功立即停止匹配，返回MatchObject。</p>
+<p>re.search(pattern, string, flags=0) 扫描整个字符串并返回第一个成功的匹配，匹配成功立即停止匹配，返回MatchObject。</p>
+<p>re.findall(pattern, string, flags=0) 匹配所有符合正则表达式的结果，以列表的形式返回能匹配的子串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s =  <span class="string">'abc123efg5h6ijk789'</span></div><div class="line">re.match(<span class="string">'[a-z]'</span>, s).group() <span class="comment"># abc</span></div><div class="line">re.search(<span class="string">'[a-z]'</span>, s).group() <span class="comment"># abc</span></div><div class="line">re.findall(<span class="string">'[a-z]'</span>, s) <span class="comment"># ['abc', 'efg', 'h', 'ijk']</span></div></pre></td></tr></table></figure>
+<h2 id="group和span"><a href="#group和span" class="headerlink" title="group和span"></a>group和span</h2><p>对于MatchObject，可以用group方法和span方法访问匹配结果对象的值和其所在的位置。</p>
+<p>group()方法可以获取分组匹配，group(0)与group()等价，表示正则表达式所匹配的整个结果，可以通过group(n)访问匹配的第n个子串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">s =  <span class="string">'abc123efg5h6ijk789'</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).group() <span class="comment"># abc123efg</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).group(<span class="number">0</span>) <span class="comment"># abc123efg</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).group(<span class="number">1</span>) <span class="comment"># abc</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).group(<span class="number">2</span>) <span class="comment"># efg</span></div></pre></td></tr></table></figure>
+<p>也可以通过groups方法以元祖返回除了整个正则表达式匹配的串外的所有匹配的子串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s =  <span class="string">'abc123efg5h6ijk789'</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).groups() <span class="comment"># ('abc', 'efg')</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).groups()[<span class="number">0</span>] <span class="comment"># abc</span></div><div class="line">re.match(<span class="string">'([a-z]+).*?([a-z]+)'</span>, s).groups()[<span class="number">1</span>] <span class="comment"># efg</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,61 +193,55 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/flex布局学习记录/" class="archive-article-date">
-  	<time datetime="2018-01-06T04:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/flex布局学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flex布局学习记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/flex布局学习记录/">flex布局学习记录</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -256,8 +262,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
