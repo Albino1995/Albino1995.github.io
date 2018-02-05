@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Albino的博客</title>
+  <title>python的实例方法、类方法和静态方法 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Albino的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albino的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+  <meta name="description" content="python的实例方法、类方法和静态方法">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python的实例方法、类方法和静态方法">
+<meta property="og:url" content="http://yoursite.com/python的实例方法、类方法和静态方法/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="Albino的博客">
+<meta property="og:description" content="python的实例方法、类方法和静态方法">
+<meta property="og:updated_time" content="2018-02-05T02:39:21.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albino的博客">
-<meta name="twitter:description" content="Albino的博客">
+<meta name="twitter:title" content="python的实例方法、类方法和静态方法">
+<meta name="twitter:description" content="python的实例方法、类方法和静态方法">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -140,36 +142,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python的实例方法、类方法和静态方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework动态设置serializer和permission/" class="archive-article-date">
-  	<time datetime="2017-10-20T00:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework动态设置serializer和permission/">django-rest-framework动态设置permission和serializer</a>
+    <h1 class="article-title" itemprop="name">
+      python的实例方法、类方法和静态方法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/python的实例方法、类方法和静态方法/" class="archive-article-date">
+  	<time datetime="2018-02-05T01:55:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python的实例方法、类方法和静态方法<br><a id="more"></a></p>
+<p>首先编写含有这三种方法的例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></div><div class="line">    name1 = <span class="string">'albino'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></div><div class="line">        self.name = name</div><div class="line">        self.age = age</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">'1: '</span> + A.name1)</div><div class="line">        print(<span class="string">'1: '</span> + self.__class__.name1)</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">(cls)</span>:</span></div><div class="line">        print(<span class="string">'2: '</span> + cls.name1)</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test3</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'3: '</span> + A.name1)</div><div class="line"></div><div class="line"></div><div class="line">    a = A(<span class="string">'aaa'</span>, <span class="number">123</span>)</div><div class="line">    A.test1() <span class="comment"># 报错，缺少实例对象</span></div><div class="line">    a.test1() <span class="comment"># 1：albino \n 1：albino</span></div><div class="line">    a.test2() <span class="comment"># 2：albino</span></div><div class="line">    A.test2() <span class="comment"># 2：albino</span></div><div class="line">    a.test3() <span class="comment"># 3：albino</span></div><div class="line">    A.test3() <span class="comment"># 3：albino</span></div></pre></td></tr></table></figure>
+<h2 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h2><p>test1是A类的实例方法，self指向一个A类的实例，实例方法可以通过self.__class__属性访问类本身，实例方法也可以修改类的状态。</p>
+<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><p>test2是A类的类方法，用了@classmethod装饰器标记了test2来标记它作为一个类方法，cls指向一个类的参数，而不是类的实例，所以类方法能访问类的属性而不能访问实例属性。</p>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>test3是A类的静态方法，用了@staticmethod装饰器标记了test3来标记它作为一个静态方法，静态方法既没有self参数也没有cls参数，所以静态方法不能访问实例属性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实例方法需要一个类实例，可以通过实例访问实例self。<br>类方法不需要类实例。他们不能访问实例（self），但他们有权访问类本身cls。<br>静态方法不能访问cls或self。它们像常规函数一样工作，但属于类的名称空间。<br>静态方法和类方法的交流和（在一定程度上）强化了开发者关于类设计的意图。这可以有维护的好处。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">实例属性</th>
+<th style="text-align:left">类属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">实例方法</td>
+<td style="text-align:left">a.x</td>
+<td style="text-align:left">A.x or self.__class__.x</td>
+</tr>
+<tr>
+<td style="text-align:left">类方法</td>
+<td style="text-align:left">不可用</td>
+<td style="text-align:left">A.x or cls.x</td>
+</tr>
+<tr>
+<td style="text-align:left">静态方法</td>
+<td style="text-align:left">不可用</td>
+<td style="text-align:left">A.x</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -177,80 +210,58 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/django-rest-framework实现短信验证码接口/" class="archive-article-date">
-  	<time datetime="2017-10-17T01:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/理解python装饰器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">理解python装饰器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/django-rest-framework实现短信验证码接口/">django-rest-framework实现短信验证码接口</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django-rest-framework</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
   
 
 
@@ -272,8 +283,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
