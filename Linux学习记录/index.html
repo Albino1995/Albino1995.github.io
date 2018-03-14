@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: css | Albino的博客</title>
+  <title>Linux学习记录 | Albino的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Albino的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albino的博客">
-<meta property="og:url" content="http://yoursite.com/tags/css/index.html">
+  <meta name="description" content="恶补下Linux知识">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习记录">
+<meta property="og:url" content="http://yoursite.com/Linux学习记录/index.html">
 <meta property="og:site_name" content="Albino的博客">
-<meta property="og:description" content="Albino的博客">
+<meta property="og:description" content="恶补下Linux知识">
+<meta property="og:image" content="http://yoursite.com/img/20180314/linux目录.png">
+<meta property="og:updated_time" content="2018-03-14T08:05:47.792Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albino的博客">
-<meta name="twitter:description" content="Albino的博客">
+<meta name="twitter:title" content="Linux学习记录">
+<meta name="twitter:description" content="恶补下Linux知识">
+<meta name="twitter:image" content="http://yoursite.com/img/20180314/linux目录.png">
   
     <link rel="alternative" href="/atom.xml" title="Albino的博客" type="application/atom+xml">
   
@@ -140,64 +144,106 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux学习记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/flex布局学习记录/" class="archive-article-date">
-  	<time datetime="2018-01-06T04:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/flex布局学习记录/">flex布局学习记录</a>
+    <h1 class="article-title" itemprop="name">
+      Linux学习记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Linux学习记录/" class="archive-article-date">
+  	<time datetime="2018-03-14T01:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>恶补下Linux知识<br><a id="more"></a></p>
+<h2 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h2><h3 id="软件操作命令"><a href="#软件操作命令" class="headerlink" title="软件操作命令"></a>软件操作命令</h3><p>安装软件 yum install xx<br>卸载软件 yum remove xx<br>搜索软件 yum search xx<br>清理缓存 yum clean packages<br>列出软件列表 yum list<br>软件包信息 yum info xx</p>
+<h3 id="服务器硬件资源和磁盘操作"><a href="#服务器硬件资源和磁盘操作" class="headerlink" title="服务器硬件资源和磁盘操作"></a>服务器硬件资源和磁盘操作</h3><p>内存 free -m -m表示已兆展示<br>硬盘 df -h -h表示人类看懂的形式<br>负载 w or top<br>cpu cat /proc/cpuinfo</p>
+<h3 id="文件和文件夹操作命令"><a href="#文件和文件夹操作命令" class="headerlink" title="文件和文件夹操作命令"></a>文件和文件夹操作命令</h3><h4 id="Linux文件目录结构"><a href="#Linux文件目录结构" class="headerlink" title="Linux文件目录结构"></a>Linux文件目录结构</h4><p>根目录 /<br>家目录 /home<br>临时目录 /tmp<br>配置目录 /etc<br>用户程序目录 /usr</p>
+<p><img src="/img/20180314/linux目录.png" alt=""></p>
+<h4 id="文件操作基本命令"><a href="#文件操作基本命令" class="headerlink" title="文件操作基本命令"></a>文件操作基本命令</h4><p>ls 查看目录下文件<br>touch 新建文件<br>mkdir 新建文件夹<br>cd 进入目录<br>rm 删除文件和目录<br>cp 复制<br>mv 移动<br>pwd 显示路径</p>
+<h4 id="vim命令"><a href="#vim命令" class="headerlink" title="vim命令"></a>vim命令</h4><p>i 进入编辑模式<br>G 移动到这个档案的最后一行<br>gg 移动到这个档案的第一行，相当于1G<br>dd 删除游标所在的那一整行<br>u 复原前一个动作<br>yy 复制游标所在的那一行<br>p 为将已复制的数据在光标下一行贴上</p>
+<h4 id="文件搜索、查找、读取"><a href="#文件搜索、查找、读取" class="headerlink" title="文件搜索、查找、读取"></a>文件搜索、查找、读取</h4><p>tail 从文件尾部开始读<br>head 从文件头部读<br>cat 读取整个文件<br>more 分页读取<br>less 可控分页<br>grep 搜索关键字<br>find 查找文件<br>wc 统计个数</p>
+<h4 id="压缩和解压"><a href="#压缩和解压" class="headerlink" title="压缩和解压"></a>压缩和解压</h4><p>tar -cf 创建压缩文件 -tvf 详细列出压缩文件中所有文件 -xf 提取所有文件 czvf(常用) xzvf(常用)</p>
+<h3 id="系统用户操作命令"><a href="#系统用户操作命令" class="headerlink" title="系统用户操作命令"></a>系统用户操作命令</h3><p>useradd 添加用户<br>adduser 添加用户<br>userdel 删除用户<br>passwd 设置密码</p>
+<h3 id="防火墙相关设置"><a href="#防火墙相关设置" class="headerlink" title="防火墙相关设置"></a>防火墙相关设置</h3><p>yum install firewalld 安装防火墙<br>service firewalld start 启动防火墙<br>service firewalld status 检查状态<br>service firewalld stop/disable 关闭或禁用防火墙</p>
+<h3 id="提权操作sudo和文件传输操作"><a href="#提权操作sudo和文件传输操作" class="headerlink" title="提权操作sudo和文件传输操作"></a>提权操作sudo和文件传输操作</h3><p>sudo 提权<br>wget、curl 下载<br>scp 上传</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/python的实例方法、类方法和静态方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python的实例方法、类方法和静态方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -218,9 +264,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
