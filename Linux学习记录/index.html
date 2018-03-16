@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Albino的博客">
 <meta property="og:description" content="恶补下Linux知识">
 <meta property="og:image" content="http://yoursite.com/img/20180314/linux目录.png">
-<meta property="og:updated_time" content="2018-03-15T09:21:53.553Z">
+<meta property="og:updated_time" content="2018-03-16T07:16:10.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习记录">
 <meta name="twitter:description" content="恶补下Linux知识">
@@ -176,12 +176,18 @@
 <h3 id="系统用户操作命令"><a href="#系统用户操作命令" class="headerlink" title="系统用户操作命令"></a>系统用户操作命令</h3><p>useradd 添加用户<br>adduser 添加用户<br>userdel 删除用户<br>passwd 设置密码</p>
 <h3 id="防火墙相关设置"><a href="#防火墙相关设置" class="headerlink" title="防火墙相关设置"></a>防火墙相关设置</h3><p>yum install firewalld 安装防火墙<br>service firewalld start 启动防火墙<br>service firewalld status 检查状态<br>service firewalld stop/disable 关闭或禁用防火墙</p>
 <h3 id="提权操作sudo和文件传输操作"><a href="#提权操作sudo和文件传输操作" class="headerlink" title="提权操作sudo和文件传输操作"></a>提权操作sudo和文件传输操作</h3><p>sudo 提权<br>wget、curl 下载<br>scp 上传</p>
+<p>参考<a href="http://www.runoob.com/linux/linux-command-manual.html" target="_blank" rel="external">Linux 命令大全</a></p>
 <h2 id="WebServer"><a href="#WebServer" class="headerlink" title="WebServer"></a>WebServer</h2><h3 id="Nginx基本操作"><a href="#Nginx基本操作" class="headerlink" title="Nginx基本操作"></a>Nginx基本操作</h3><p>yum install nginx 安装<br>service nginx start 启动<br>service nginx stop 停止<br>service nginx reload 重载</p>
 <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>yum install mysql-community-server 安装<br>service mysqld start/restart 启动<br>service mysqld stop 停止</p>
-<h3 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h3><p>yum remove mariadb-libs.x86_64 卸载mariadb数据库<br><a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">https://dev.mysql.com/downloads/repo/yum/</a> 下载MySQL源<br>yum localinstall mysql57-community-release-el7-8.noarch.rpm 安装源<br>yum install mysql-community-server 安装MySQL<br>cat /var/log/mysqld.log|grep “password” 默认密码</p>
-<h3 id="远程链接"><a href="#远程链接" class="headerlink" title="远程链接"></a>远程链接</h3><p>use mysql; 进入mysql数据库<br>update user set host = ‘%’ where Host = “localhost” and User = “root”; 修改root用户host<br>service firewalld stop 关闭防火墙</p>
+<h3 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h3><p>yum remove mariadb-libs.x86_64 卸载mariadb数据库<br><a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">https://dev.mysql.com/downloads/repo/yum/</a> 下载MySQL源<br>yum localinstall mysql57-community-release-el7-11.noarch.rpm 安装源<br>yum install mysql-community-server 安装MySQL<br>cat /var/log/mysqld.log|grep “password” 默认密码</p>
+<h3 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h3><p><a href="http://blog.sina.com.cn/s/blog_a0d71a9d0102wlz3.html" target="_blank" rel="external">数据库重置密码</a></p>
+<h3 id="远程链接"><a href="#远程链接" class="headerlink" title="远程链接"></a>远程链接</h3><p>use mysql; 进入mysql数据库<br>update user set host = ‘%’ where Host = “localhost” and User = “root”; 修改root用户host<br>flush privileges 刷新权限<br>service firewalld stop 关闭防火墙</p>
 <h3 id="genelog"><a href="#genelog" class="headerlink" title="genelog"></a>genelog</h3><p>set global general_log_file = “/tmp/xx.log”; 设置日志路径<br>set global general_log = on; 启用日志</p>
 <h3 id="新增用户"><a href="#新增用户" class="headerlink" title="新增用户"></a>新增用户</h3><p>create user ‘username’@’%’ identified by ‘password’; 新增用户<br>grant all privileges on <em>.</em> to ‘username’@’%’ identified by ‘password’ grant option; 赋权<br>flush privileges; 刷新权限</p>
+<h2 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>wget <a href="http://download.redis.io/releases/redis-4.0.2.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-4.0.2.tar.gz</a> 下载源码<br>tar xvfz redis-4.0.2.tar.gz 解压<br>yum install gcc make malloc = libc make install 安装</p>
+<p>参考<a href="http://www.runoob.com/redis/redis-commands.html" target="_blank" rel="external">Redis 命令</a></p>
+<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><p>yum install git 安装git<br>cd cd ~/.ssh/<br>ssh-keygen 生成SSH Key<br>git clone 复制项目<br>git remote 设置源<br>git commit 提交<br>git push 推送远程主机<br>git fetch 将更新取回本地<br>git rebase 把一个分支的修改合并到当前分支<br>git init命令创建一个空的Git仓库或重新初始化一个现有仓库</p>
+<p><a href="http://www.runoob.com/git/git-tutorial.html" target="_blank" rel="external">git教程</a></p>
 
       
 
